@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
+  <HEADERSECTION SENDER="ili2gpkg-4.8.0-2f360a8ebdee5250258ae4fe1ff5c21842a076ff" VERSION="2.3">
+    <MODELS>
+      <MODEL NAME="SO_AGI_SGV_Meldungen_20221109" VERSION="2022-11-09" URI="https://agi.so.ch"/>
+    </MODELS>
+  </HEADERSECTION>
+  <DATASECTION>
+    <SO_AGI_SGV_Meldungen_20221109.Meldungen BID="SO_AGI_SGV_Meldungen_20221109.Meldungen">
+      <SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung TID="1">
+        <Lage>
+          <COORD>
+            <C1>2607898.579</C1>
+            <C2>1228282.862</C2>
+          </COORD>
+        </Lage>
+        <Grundstuecksnummer>1125</Grundstuecksnummer>
+        <NBIdent>SO0200002601</NBIdent>
+      </SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung>
+      <SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung TID="2">
+        <Grundstuecksgeometrie>
+          <SURFACE>
+            <BOUNDARY>
+              <POLYLINE>
+                <COORD>
+                  <C1>2607779.799</C1>
+                  <C2>1228345.202</C2>
+                </COORD>
+                <COORD>
+                  <C1>2607788.878</C1>
+                  <C2>1228302.532</C2>
+                </COORD>
+                <COORD>
+                  <C1>2607827.008</C1>
+                  <C2>1228308.585</C2>
+                </COORD>
+                <COORD>
+                  <C1>2607820.653</C1>
+                  <C2>1228351.255</C2>
+                </COORD>
+                <COORD>
+                  <C1>2607779.799</C1>
+                  <C2>1228345.202</C2>
+                </COORD>
+              </POLYLINE>
+            </BOUNDARY>
+          </SURFACE>
+        </Grundstuecksgeometrie>
+        <Grundstuecksnummer>6461</Grundstuecksnummer>
+        <NBIdent>SO0200002601</NBIdent>
+      </SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung>
+    </SO_AGI_SGV_Meldungen_20221109.Meldungen>
+  </DATASECTION>
+</TRANSFER>

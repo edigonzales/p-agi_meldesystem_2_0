@@ -1,0 +1,37 @@
+INTERLIS 2.3;
+
+/** !!------------------------------------------------------------------------------
+ *  !! Version    | wer | Änderung
+ *  !!------------------------------------------------------------------------------
+ *  !! 2022-11-09 | sz  | Ersterfassung
+ *  !!==============================================================================
+ */
+!!@ technicalContact=mailto:agi@bd.so.ch
+!!@ furtherInformation=http://geo.so.ch/models/AGI/SO_AGI_SGV_Meldungen_20221109.uml
+MODEL SO_AGI_SGV_Meldungen_20221109 (de)
+AT "https://agi.so.ch"
+VERSION "2022-11-09"  =
+  IMPORTS GeometryCHLV95_V1;
+
+  TOPIC Meldungen =
+
+    /** Meldungen der SGV abgeleitet aus eCH-0132.
+     */
+    CLASS Meldung =
+      /** Koordinate des eingeschätzten Objektes. Kommt von der SGV-Meldung oder wird im Web GIS Client digitalisiert.
+       */
+      Lage : GeometryCHLV95_V1.Coord2;
+      /** Geometrie des betroffenen Grundstückes. Aus AV-Daten, falls keine Punktkoordinate in der SGV-Meldung vorhanden ist.
+       */
+      Grundstuecksgeometrie : GeometryCHLV95_V1.SurfaceWithOverlaps2mm;
+      /** GB-Nummer des Grundstückes. Kommt von der SGV-Meldung oder beim Digitalisieren im Web GIS Client (wird oft als Sortier- oder Suchkriterium verwendet).
+       */
+      Grundstuecksnummer : TEXT*12;
+      /** Nummerierungsbereich-Identifikator. Kommt von der SGV-Meldung oder wird im Web GIS Client digitalisiert. Ist für Eindeutigkeit der GB-Nr. bei fusionierten Gemeinden notwendig.
+       */
+      NBIdent : TEXT*20;
+    END Meldung;
+
+  END Meldungen;
+
+END SO_AGI_SGV_Meldungen_20221109.
