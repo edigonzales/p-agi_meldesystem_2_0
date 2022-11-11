@@ -47,8 +47,7 @@ def bucketSuffix = '-undefined'
         bucketSuffix = '-' + gretlEnvironment
     }
 
-//def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen$bucketSuffix"
-def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen"
+def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen$bucketSuffix"
 
 remotes {
     sftpServer {
@@ -86,7 +85,7 @@ tasks.register('uploadToS3', S3Upload) {
 }
 
 tasks.register('transform', XslTransformer) {
-    description = "Transformiert die eCH-0156-Meldungen nacht INTERLIS."
+    description = "Transformiert die eCH-0156-Meldungen nach INTERLIS."
     xslFileName = "eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl"
     xmlFile = fileTree(downloadFolder).include { it.file.name.toLowerCase().endsWith("xml") }
     outDirectory = file(transformFolder)
