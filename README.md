@@ -1,5 +1,11 @@
 # p-agi_meldesystem_2_0
 
+Key muss für JSch umformatiert werden:
+```
+ssh-keygen -p -f id_rsa -m pem -P "" -N ""
+```
+
+
 
 Testrequest für Integration GRETL:
 

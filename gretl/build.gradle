@@ -1,0 +1,100 @@
+import ch.so.agi.gretl.tasks.*
+import ch.so.agi.gretl.api.*
+import java.nio.file.Paths
+
+apply plugin: 'ch.so.agi.gretl'
+apply plugin: "org.hidetake.ssh"
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://jars.interlis.ch" }
+        maven { url "https://repo.osgeo.org/repository/release/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'ch.so.agi', name: 'gretl',  version: '2.2.LOCALBUILD'
+        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
+    }
+}
+
+defaultTasks 'downloadFromSgv'
+
+
+def pathToTempFolder = System.getProperty("java.io.tmpdir")
+def downloadFolder = Paths.get(pathToTempFolder, "download").toFile()
+def transformFolder = Paths.get(pathToTempFolder, "transform").toFile()
+def remoteDirectory = "sgv-gemdat/sgv/echo0132/"
+
+println downloadFolder
+println transformFolder
+
+if (!downloadFolder.exists()) {
+    downloadFolder.mkdirs()
+}
+
+if (!transformFolder.exists()) {
+    transformFolder.mkdirs()
+}
+
+def bucketSuffix = '-undefined'
+    if ( gretlEnvironment == 'production' ) { 
+        bucketSuffix = ''
+    } else if ( gretlEnvironment == 'integration' || gretlEnvironment == 'development' ) { 
+        bucketSuffix = '-' + gretlEnvironment.substring(0, 3)
+    } else {
+        bucketSuffix = '-' + gretlEnvironment
+    }
+
+//def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen$bucketSuffix"
+def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen"
+
+remotes {
+    sftpServer {
+        host = "${ftpServerSogis}"
+        user = "${ftpUserSogis}"
+        identity = file('/Users/stefan/tmp/sftp/id_rsa')
+    }
+}
+
+tasks.register('downloadFromSgv') {
+    description = "Download files from SFTP server"
+    doLast {
+        ssh.settings {
+            knownHosts = allowAnyHosts
+        }
+
+        ssh.run {
+            session(remotes.sftpServer) {
+                get from: remoteDirectory, into: downloadFolder, filter: { it.name.toLowerCase().endsWith("xml") }
+            }
+        }
+        println "Files downloaded from SFTP server"
+    }
+}
+
+tasks.register('uploadToS3', S3Upload) {
+    description = "Original XML-Dateien (eCH-0132-Meldungen) nach S3 hochladen."
+    accessKey = awsAccessKeyAgi
+    secretKey = awsSecretAccessKeyAgi
+    sourceDir = file(downloadFolder)
+    endPoint = "https://s3.eu-central-1.amazonaws.com"
+    region = "eu-central-1"
+    bucketName = sgvMeldungenBucket
+    acl = "private"
+}
+
+tasks.register('transform', XslTransformer) {
+    description = "Transformiert die eCH-0156-Meldungen nacht INTERLIS."
+    xslFileName = "eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl"
+    xmlFile = fileTree(downloadFolder).include { it.file.name.toLowerCase().endsWith("xml") }
+    outDirectory = file(transformFolder)
+}
+
+// task import
+
+// task delete
+
+// ne Loop über die Files, die gelöscht werden sollen. Sollte funktionieren, da im doLast
+
