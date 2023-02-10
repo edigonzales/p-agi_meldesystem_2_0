@@ -20,3 +20,8 @@ java -jar /Users/stefan/apps/ili2gpkg-4.8.0/ili2gpkg-4.8.0.jar --dbfile fubar.gp
 
 java -jar /Users/stefan/apps/ili2gpkg-4.8.0/ili2gpkg-4.8.0.jar --dbfile fubar.gpkg --modeldir ".;https://models.geo.admin.ch" --models SO_AGI_SGV_Meldungen_20221109 --defaultSrsCode 2056 --strokeArcs --export fubar.xtf
 ```
+
+Links:
+
+- http://www.ech.ch/de/xmlns/eCH-0129/6/eCH-0129-6-0.xsd
+- http://www.ech.ch/de/xmlns/eCH-0132/3/eCH-0132-3-0.xsd 
