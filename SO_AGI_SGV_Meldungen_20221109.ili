@@ -24,12 +24,58 @@ VERSION "2022-11-09"  =
       /** Geometrie des betroffenen Grundstückes. Aus AV-Daten, falls keine Punktkoordinate in der SGV-Meldung vorhanden ist.
        */
       Grundstuecksgeometrie : GeometryCHLV95_V1.SurfaceWithOverlaps2mm;
-      /** GB-Nummer des Grundstückes. Kommt von der SGV-Meldung oder beim Digitalisieren im Web GIS Client (wird oft als Sortier- oder Suchkriterium verwendet).
+      /** Grundbuchnummer des Grundstückes auf dem das versicherte Objekt liegt.
        */
-      Grundstuecksnummer : TEXT*12;
+      Grundstuecksnummer : MANDATORY TEXT*12;
       /** Nummerierungsbereich-Identifikator. Kommt von der SGV-Meldung oder wird im Web GIS Client digitalisiert. Ist für Eindeutigkeit der GB-Nr. bei fusionierten Gemeinden notwendig.
        */
       NBIdent : TEXT*20;
+      /** Postalische Adresse des Gebäudes. Zusammengesetzt aus einzelnen Werten (Strasse Nummer, PLZ Ortschaft).
+       */
+      Gebaeudeadresse : TEXT*1000;
+      /** E-GRID des Grundstückes auf dem das versicherte Objekt liegt.
+       */
+      EGRID : TEXT*14;
+      /** Ereignis resp. Meldegrund. Es sind nicht alle Eregnisse gemäss eCH-0132 möglich. Siehe Konzept.
+       */
+      Ereignis_Meldegrund : MANDATORY (
+        Loeschung(
+          !!@ ili2db.dispName="Löschung: Abbruch"
+          Abbruch,
+          !!@ ili2db.dispName="Löschung: Vereinigung"
+          Vereinigung,
+          !!@ ili2db.dispName="Löschung: Schaden"
+          Schaden
+        ),
+        Vereinigung,
+        Trennung,
+        Neuaufnahme,
+        Teilabbruch,
+        Umbau,
+        Anbau,
+        Neubau
+      );
+      /** Freitext zur Beschreibung der Gebäudenutzungsart
+       */
+      Gebaeudebezeichnung : TEXT;
+      /** Baujahr des versicherten Objektes
+       */
+      Baujahr : INTERLIS.GregorianYear;
+      /** Gesamtvolumen des Objektes in Kubikmeter
+       */
+      Volumen : 0 .. 99999999;
+      /** Zeitpunkt des Beginns der Versicherung
+       */
+      Versicherungsbeginn : MANDATORY INTERLIS.XMLTime;
+      /** Adresses des Verwalters
+       */
+      Verwalter : MANDATORY TEXT*2000;
+      /** Adresse des Eigentümers
+       */
+      Eigentuemer : MANDATORY TEXT*2000;
+      /** Eidgenössischer Gebäudeidentifikator
+       */
+      EGID : 1 .. 999999999;
     END Meldung;
 
   END Meldungen;
