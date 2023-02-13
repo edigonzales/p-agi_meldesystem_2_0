@@ -18,7 +18,7 @@
 
         <!-- Bemerkungen
         * Pro Meldung (z.B. newInsuranceValue) sind mehrere "buidlingInformationType" möglich. Dort sind dann wieder mehrere Grundstücke möglich. 
-          Wie mache ich das grundsätzlich und wie mit XSLT?
+          Wie mache ich das grundsätzlich und wie mit XSLT? (-> TID? position()?)
           - pro building und pro Grundstück ein INTERLIS-Objekt?
           - jedoch werden immer alle Eingänge (buildingEntranceInformation) allen INTERLIS-Objekte zugewiesen
         * policyholder kann es mehrere geben. Sie werden zusammengefügt.
