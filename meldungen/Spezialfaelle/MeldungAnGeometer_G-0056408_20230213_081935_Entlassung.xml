@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">87da1290-906b-4a62-8bd3-03d678caf012</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.16.2</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-02-13T08:19:35.7307892+01:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <newInsuranceValue>
+    <event>18</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>c3b838e3-ec53-432f-8009-20dd106b0641</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0056408</insuranceNumber>
+    </insuranceObject>
+    <insuranceValue>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>EventId</IdCategory>
+        <Id>4745fa3b-783d-4c88-b7d7-bd21f944c3fc</Id>
+      </localID>
+      <validFrom xmlns="http://www.ech.ch/xmlns/eCH-0129/6">2023-02-13</validFrom>
+      <changeReason xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1005</changeReason>
+      <insuranceSum xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <amount>382362</amount>
+      </insuranceSum>
+    </insuranceValue>
+    <custodian>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>merbel GmbH</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Wolfackerstrasse</street>
+          <houseNumber>3a</houseNumber>
+          <town>Däniken SO</town>
+          <swissZipCode>4658</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </custodian>
+    <policyholder>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>merbel GmbH</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Wolfackerstrasse</street>
+          <houseNumber>3a</houseNumber>
+          <town>Däniken SO</town>
+          <swissZipCode>4658</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </policyholder>
+    <policyholder>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>MBA Immo GmbH</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Industriestrasse West</street>
+          <houseNumber>9</houseNumber>
+          <town>Hägendorf</town>
+          <swissZipCode>4614</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </policyholder>
+    <buildingInformation>
+      <building>
+        <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <year>1929</year>
+        </dateOfConstruction>
+        <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1020</buildingCategory>
+        <volume xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <volume>455</volume>
+          <norm>961</norm>
+        </volume>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>DateOfValuation</metaDataName>
+          <metaDataValue>03.03.2016</metaDataValue>
+        </namedMetaData>
+      </building>
+      <realestate>
+        <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <EGRID>CH810637328241</EGRID>
+          <number>2930</number>
+        </realestateIdentification>
+        <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>NBIdent</metaDataName>
+          <metaDataValue>SO0200002581</metaDataValue>
+        </namedMetaData>
+      </realestate>
+      <buildingEntranceInformation>
+        <buildingEntrance>
+          <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">31</buildingEntranceNo>
+          <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <IdCategory>BuildingEntrance</IdCategory>
+            <Id>6dc5c49e-7db3-448f-9a9a-42a522b551e2</Id>
+          </localID>
+          <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+        </buildingEntrance>
+        <localisationInformation>
+          <locality>
+            <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4600</swissZipCode>
+            <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+            <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <nameLong>Olten</nameLong>
+            </name>
+          </locality>
+          <street>
+            <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <language>9901</language>
+              <descriptionLong>Friedhofweg</descriptionLong>
+            </description>
+          </street>
+        </localisationInformation>
+      </buildingEntranceInformation>
+    </buildingInformation>
+  </newInsuranceValue>
+</delivery>

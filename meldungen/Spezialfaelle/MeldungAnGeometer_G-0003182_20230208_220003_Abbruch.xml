@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">7e67b9c3-2c80-4c5d-9632-46d1e1f88eb2</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.16.2</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-02-08T22:00:03.5777527+01:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <cancellation>
+    <event>19</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>04935b0c-5eb4-4144-93bf-a18449aae0d2</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0003182</insuranceNumber>
+    </insuranceObject>
+  </cancellation>
+</delivery>

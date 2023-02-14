@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">cc5504b1-52a9-4145-899f-dbe6f15c7505</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.16.2</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-02-10T22:00:02.1929592+01:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <newInsuranceValue>
+    <event>3</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>6334597f-466e-4270-a2e8-151be0f1c58b</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0110715</insuranceNumber>
+    </insuranceObject>
+    <insuranceValue>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>EventId</IdCategory>
+        <Id>12f23b8c-1c51-43c5-baa4-d939f033391b</Id>
+      </localID>
+      <validFrom xmlns="http://www.ech.ch/xmlns/eCH-0129/6">2023-02-10</validFrom>
+      <changeReason xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1005</changeReason>
+      <insuranceSum xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <amount>1247340</amount>
+      </insuranceSum>
+    </insuranceValue>
+    <custodian>
+      <mailAddress>
+        <person xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <firstName>Silvan</firstName>
+          <lastName>Lisser</lastName>
+        </person>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Rainhubel</street>
+          <houseNumber>20</houseNumber>
+          <town>Matzendorf</town>
+          <swissZipCode>4713</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </custodian>
+    <policyholder>
+      <mailAddress>
+        <person xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <firstName>Kathrin</firstName>
+          <lastName>Lisser</lastName>
+        </person>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Rainhubel</street>
+          <houseNumber>20</houseNumber>
+          <town>Matzendorf</town>
+          <swissZipCode>4713</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </policyholder>
+    <policyholder>
+      <mailAddress>
+        <person xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <firstName>Silvan</firstName>
+          <lastName>Lisser</lastName>
+        </person>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Rainhubel</street>
+          <houseNumber>20</houseNumber>
+          <town>Matzendorf</town>
+          <swissZipCode>4713</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </policyholder>
+    <buildingInformation>
+      <building>
+        <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <year>2022</year>
+        </dateOfConstruction>
+        <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1020</buildingCategory>
+        <volume xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <volume>1681</volume>
+          <norm>961</norm>
+        </volume>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>DateOfValuation</metaDataName>
+          <metaDataValue>10.02.2023</metaDataValue>
+        </namedMetaData>
+      </building>
+      <realestate>
+        <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <EGRID>CH633275061716</EGRID>
+          <number>1934</number>
+        </realestateIdentification>
+        <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>NBIdent</metaDataName>
+          <metaDataValue>SO0200002427</metaDataValue>
+        </namedMetaData>
+      </realestate>
+      <buildingEntranceInformation>
+        <buildingEntrance>
+          <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">20</buildingEntranceNo>
+          <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <IdCategory>BuildingEntrance</IdCategory>
+            <Id>2dc9c1f5-9467-44bf-b050-f55d551d9a76</Id>
+          </localID>
+          <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+        </buildingEntrance>
+        <localisationInformation>
+          <locality>
+            <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4713</swissZipCode>
+            <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+            <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <nameLong>Matzendorf</nameLong>
+            </name>
+          </locality>
+          <street>
+            <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <language>9901</language>
+              <descriptionLong>Rainhubel</descriptionLong>
+            </description>
+          </street>
+        </localisationInformation>
+      </buildingEntranceInformation>
+    </buildingInformation>
+  </newInsuranceValue>
+</delivery>

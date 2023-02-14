@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">9a397345-45e1-4405-a0ad-de62072e06b6</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.16.2</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-02-13T08:19:36.1995467+01:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <newInsuranceValue>
+    <event>11</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>cff77044-d2ab-4f41-b9f1-240a880a8afe</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0096267</insuranceNumber>
+    </insuranceObject>
+    <insuranceValue>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>EventId</IdCategory>
+        <Id>45bc3603-9b8b-4c72-89e2-d665b28fe34f</Id>
+      </localID>
+      <validFrom xmlns="http://www.ech.ch/xmlns/eCH-0129/6">2014-01-01</validFrom>
+      <changeReason xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1005</changeReason>
+      <insuranceSum xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <amount>5520</amount>
+      </insuranceSum>
+    </insuranceValue>
+    <custodian>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>Kantonales Hochbauamt</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Werkhofstrasse</street>
+          <houseNumber>65</houseNumber>
+          <town>Solothurn</town>
+          <swissZipCode>4509</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </custodian>
+    <policyholder>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>Staat Solothurn</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <postOfficeBoxText>Postfach</postOfficeBoxText>
+          <town>Solothurn</town>
+          <swissZipCode>4509</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </policyholder>
+    <buildingInformation>
+      <building>
+        <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <year>2006</year>
+        </dateOfConstruction>
+        <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1060</buildingCategory>
+        <volume xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <volume>7</volume>
+          <norm>961</norm>
+        </volume>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>DateOfValuation</metaDataName>
+          <metaDataValue>03.11.2015</metaDataValue>
+        </namedMetaData>
+      </building>
+      <realestate>
+        <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <EGRID>CH440632701628</EGRID>
+          <number>2359</number>
+        </realestateIdentification>
+        <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>NBIdent</metaDataName>
+          <metaDataValue>SO0200002601</metaDataValue>
+        </namedMetaData>
+      </realestate>
+      <buildingEntranceInformation>
+        <buildingEntrance>
+          <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">23</buildingEntranceNo>
+          <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <IdCategory>BuildingEntrance</IdCategory>
+            <Id>b3d2e1fc-d228-4572-9c1a-828a5e59f118</Id>
+          </localID>
+          <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+        </buildingEntrance>
+        <localisationInformation>
+          <locality>
+            <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4500</swissZipCode>
+            <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+            <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <nameLong>Solothurn</nameLong>
+            </name>
+          </locality>
+          <street>
+            <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <language>9901</language>
+              <descriptionLong>Blumensteinweg</descriptionLong>
+            </description>
+          </street>
+        </localisationInformation>
+      </buildingEntranceInformation>
+    </buildingInformation>
+  </newInsuranceValue>
+</delivery>

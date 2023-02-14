@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">5702d26e-eea4-4879-b732-150ac0db6185</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.16.2</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-02-09T22:00:04.7813821+01:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <newInsuranceValue>
+    <event>3</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>66c0ea0a-dcd6-4f6e-ac32-fd8e747e447e</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0110211</insuranceNumber>
+    </insuranceObject>
+    <insuranceValue>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>EventId</IdCategory>
+        <Id>dbf96234-f88b-4731-a313-8b478700e7ed</Id>
+      </localID>
+      <validFrom xmlns="http://www.ech.ch/xmlns/eCH-0129/6">2023-02-09</validFrom>
+      <changeReason xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1005</changeReason>
+      <insuranceSum xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <amount>2121060</amount>
+      </insuranceSum>
+    </insuranceValue>
+    <custodian>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>Profitass AG</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Luzernstrasse</street>
+          <houseNumber>34</houseNumber>
+          <town>Aeschi SO</town>
+          <swissZipCode>4556</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </custodian>
+    <policyholder>
+      <mailAddress>
+        <organisation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <organisationName>STWEG GB Nr. 3668</organisationName>
+        </organisation>
+        <addressInformation xmlns="http://www.ech.ch/xmlns/eCH-0010/6">
+          <street>Wegacker</street>
+          <houseNumber>3</houseNumber>
+          <town>Subingen</town>
+          <swissZipCode>4553</swissZipCode>
+          <country>
+            <countryNameShort>Schweiz</countryNameShort>
+          </country>
+        </addressInformation>
+      </mailAddress>
+    </policyholder>
+    <buildingInformation>
+      <building>
+        <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <year>2022</year>
+        </dateOfConstruction>
+        <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1020</buildingCategory>
+        <volume xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <volume>3276</volume>
+          <norm>961</norm>
+        </volume>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>DateOfValuation</metaDataName>
+          <metaDataValue>09.02.2023</metaDataValue>
+        </namedMetaData>
+      </building>
+      <realestate>
+        <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <EGRID>CH873277774643</EGRID>
+          <number>3668</number>
+        </realestateIdentification>
+        <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>NBIdent</metaDataName>
+          <metaDataValue>SO0200002532</metaDataValue>
+        </namedMetaData>
+      </realestate>
+      <buildingEntranceInformation>
+        <buildingEntrance>
+          <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">3</buildingEntranceNo>
+          <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <IdCategory>BuildingEntrance</IdCategory>
+            <Id>49560e9e-17f9-4c79-8843-a00914089276</Id>
+          </localID>
+          <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+        </buildingEntrance>
+        <localisationInformation>
+          <locality>
+            <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4553</swissZipCode>
+            <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+            <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <nameLong>Subingen</nameLong>
+            </name>
+          </locality>
+          <street>
+            <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <language>9901</language>
+              <descriptionLong>Wegacker</descriptionLong>
+            </description>
+          </street>
+        </localisationInformation>
+      </buildingEntranceInformation>
+    </buildingInformation>
+  </newInsuranceValue>
+</delivery>
