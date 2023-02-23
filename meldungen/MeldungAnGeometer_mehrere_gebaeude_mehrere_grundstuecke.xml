@@ -114,6 +114,18 @@
           <metaDataValue>SO0200002601</metaDataValue>
         </namedMetaData>
       </realestate>
+      <realestate>
+        <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <EGRID>CH933270068783</EGRID>
+          <number>123456</number>
+        </realestateIdentification>
+        <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+        <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+          <metaDataName>NBIdent</metaDataName>
+          <metaDataValue>SO0200002601</metaDataValue>
+        </namedMetaData>
+      </realestate>
+
       <buildingEntranceInformation>
         <buildingEntrance>
           <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">3</buildingEntranceNo>

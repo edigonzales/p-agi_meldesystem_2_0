@@ -13,6 +13,9 @@ Testrequest für Integration GRETL:
 java -jar /Users/stefan/apps/SaxonHE10-6J/saxon-he-10.6.jar -s:meldungen/MeldungAnGeometer_G-0111102_20221103_145001.xml -xsl:ech0132_to_xtf.xsl -o:MeldungAnGeometer_G-0111102_20221103_145001.xtf
 
 java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/MeldungAnGeometer_mehrere_gebaeude_mehrere_grundstuecke.xml -xsl:eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl -o:MeldungAnGeometer_mehrere_gebaeude_mehrere_grundstuecke.xtf
+
+java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/Spezialfaelle/MeldungAnGeometer_G-0098981_20230214_104054_Koordinaten.xml -xsl:eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl -o:MeldungAnGeometer_G-0098981_20230214_104054_Koordinaten.xtf
+
 ```
 
 
