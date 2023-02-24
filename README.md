@@ -20,6 +20,10 @@ java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/Spezial
 java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/Spezialfaelle/MeldungAnGeometer_G-0046901_20230213_081935_Wiederaufnahme_eines_Abbruchs.xml -xsl:eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl -o:MeldungAnGeometer_G-0046901_20230213_081935_Wiederaufnahme_eines_Abbruchs.xtf
 
 
+java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/Spezialfaelle/MeldungAnGeometer_G-0013648_20230210_220000_Abbruch.xml -xsl:eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl -o:MeldungAnGeometer_G-0013648_20230210_220000_Abbruch.xtf
+
+
+
 ```
 
 

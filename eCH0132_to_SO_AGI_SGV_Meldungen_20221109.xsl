@@ -63,7 +63,7 @@
                 <xsl:message>Hallo Delivery</xsl:message>
 
                 <!--Eventuell OR, falls alle ähnlich/gleich sind.-->
-                <xsl:apply-templates select="eCH-0132:newInsuranceValue" /> 
+                <xsl:apply-templates select="eCH-0132:newInsuranceValue | eCH-0132:cancellation" /> 
 
             </SO_AGI_SGV_Meldungen_20221109.Meldungen>
 
@@ -71,8 +71,8 @@
         </TRANSFER>
     </xsl:template>
 
-    <xsl:template match="eCH-0132:newInsuranceValue">
-        <xsl:message>Hallo newInsuranceValue</xsl:message>
+    <xsl:template match="eCH-0132:newInsuranceValue | eCH-0132:cancellation">
+        <xsl:message>Hallo newInsuranceValue or cancellation</xsl:message>
 
         <SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung xmlns="http://www.interlis.ch/INTERLIS2.3" TID="1">
             <xsl:if test="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:coordinates">
