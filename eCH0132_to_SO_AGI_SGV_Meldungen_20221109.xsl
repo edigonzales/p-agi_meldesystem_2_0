@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:myns="ch.so.agi" xmlns:eCH-0132="http://www.ech.ch/xmlns/eCH-0132/3" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/6"  exclude-result-prefixes="myns eCH-0132 eCH-0129" version="3.0"> 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:myns="ch.so.agi" xmlns:eCH-0132="http://www.ech.ch/xmlns/eCH-0132/3" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/6" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/6" exclude-result-prefixes="myns eCH-0132 eCH-0129 eCH-0058 eCH-0010" version="3.0"> 
     <xsl:output method="xml" indent="yes"/>
     
     <xsl:key name="myns:lookup-eventType" match="myns:data" use="@key" />
-
     <xsl:variable name="myns:eventType-lookup">
         <myns:data key="3" value="Neubau" />
         <myns:data key="4" value="Anbau" />
         <myns:data key="5" value="Umbau" />
         <myns:data key="6" value="Teilabbruch" />
+        <myns:data key="11" value="Wiederaufnahme" />
         <myns:data key="16" value="Trennung" />
         <myns:data key="17" value="Vereinigung" />
         <myns:data key="18" value="Entlassung" />
@@ -18,6 +18,15 @@
         <myns:data key="26" value="Neuaufnahme" />
     </xsl:variable>
 
+    <xsl:key name="myns:lookup-buildingCategoryType" match="myns:data" use="@key" />
+    <xsl:variable name="myns:buildingCategoryType-lookup">
+        <myns:data key="1010" value="Provisorische Unterkunft" />
+        <myns:data key="1020" value="Reine Wohngebäude (Wohnnutzung ausschliesslich)" />
+        <myns:data key="1030" value="Wohngebäude mit Nebennutzung" />
+        <myns:data key="1040" value="Gebäude mit teilweiser Wohnnutzung" />
+        <myns:data key="1060" value="Gebäude ohne Wohnnutzung" />
+        <myns:data key="1080" value="Sonderbau" />
+    </xsl:variable>
 
 
     <xsl:template match="/eCH-0132:delivery">
@@ -29,9 +38,10 @@
         </HEADERSECTION>
 
         <!-- TODO 
-        * Lage: Beispiel fehlt
-        * NBIdent: falsch im XML (metaDataName anstatt identDN) 
         * Versicherungsbeginn: falsch im XML (metaDataName) oder fehlt gänzlich. Sollte mandatory sein.
+        * Umgang mit den verschiednene eventType in der Transformation: sind die immer sehr ähnlich? fehlt einfach was? (-> zusätliche if prüfung)
+        * message-id als tid?
+        * policyholder zusammenfügen / Umgang mit mehreren 
         -->
 
         <!-- Bemerkungen
@@ -40,8 +50,12 @@
           - pro building und pro Grundstück ein INTERLIS-Objekt?
           - jedoch werden immer alle Eingänge (buildingEntranceInformation) allen INTERLIS-Objekte zugewiesen
           -> Ich nehme nur jeweils das erste Element? Nachfragen bei SGV.
-        * policyholder kann es mehrere geben. Sie werden zusammengefügt.
-        * Mappen des eventType-Integers, siehe Seite 19 der ech-0132-Norm.
+        * policyholder kann es mehrere geben. Sie werden zusammengefügt. TPODO
+        * Fehlt EGID? Gemäss SGV führen sie diesen nicht.
+
+
+
+
 
         * Gemeinde wird nicht geliefert. Dünkt mich. Wir könntes sie mit einem Update updaten (nache dem Import oder beim Transfer in Pub)
         -->
@@ -53,8 +67,6 @@
 
                 <!--Eventuell OR, falls alle ähnlich/gleich sind.-->
                 <xsl:apply-templates select="eCH-0132:newInsuranceValue" /> 
-
-
 
             </SO_AGI_SGV_Meldungen_20221109.Meldungen>
 
@@ -103,23 +115,86 @@
                 <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:dateOfConstruction/eCH-0129:year" />
             </Baujahr>
 
-
-<!-- TODO mapping-->
-
-
             <Gebaeudebezeichnung xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:buildingCategory" />
+                <xsl:value-of select="key('myns:lookup-eventType', eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:buildingCategory, $myns:buildingCategoryType-lookup)/@value"/>
             </Gebaeudebezeichnung>
+
+            <Gebaeudeadresse xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:street/eCH-0129:description/eCH-0129:descriptionLong" />
+                <xsl:text>&#x20;</xsl:text>
+                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:buildingEntrance/eCH-0129:buildingEntranceNo" />
+                <xsl:text>,&#x20;</xsl:text>
+                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:swissZipCode" />
+                <xsl:text>&#x20;</xsl:text>
+                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:name/eCH-0129:nameLong" />
+            </Gebaeudeadresse>
+
+            <Versicherungsbeginn xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:value-of select="eCH-0132:insuranceValue/eCH-0129:validFrom" />
+            </Versicherungsbeginn>
+
+            <Verwalter xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:call-template name="custodianOrPolicyholder">
+                    <xsl:with-param name="address" select="eCH-0132:custodian/eCH-0132:mailAddress" />
+                </xsl:call-template>
+            </Verwalter>
+
+            <Eigentuemer xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:for-each select="eCH-0132:policyholder/eCH-0132:mailAddress">
+                    <xsl:call-template name="custodianOrPolicyholder">
+                        <xsl:with-param name="address" select="." />
+                    </xsl:call-template>
+                    <xsl:if test="position() != last()">
+                        <xsl:text>&#x20;/&#x20;</xsl:text>
+                    </xsl:if>
+                </xsl:for-each>
+            </Eigentuemer>
+
+            <Baulicher_Mehrwert xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'benefit']/following-sibling::eCH-0129:metaDataValue" />
+            </Baulicher_Mehrwert>
+
+            <Status xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:text>neu</xsl:text>
+            </Status>
+
+            <MessageId xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:value-of select="/eCH-0132:delivery/eCH-0132:deliveryHeader/eCH-0058:messageId" />
+            </MessageId>
+
+            <InsuranceObjectId xmlns="http://www.interlis.ch/INTERLIS2.3">
+                <xsl:value-of select="eCH-0132:insuranceObject/eCH-0129:insuranceNumber" />
+            </InsuranceObjectId>
 
 
         </SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung>
-
-
-
-
-
-
-
     </xsl:template>
+
+
+    <xsl:template name="custodianOrPolicyholder">
+        <xsl:param name="address" />
+        <xsl:choose>
+            <xsl:when test="$address/eCH-0010:organisation">
+                <xsl:value-of select="$address/eCH-0010:organisation/eCH-0010:organisationName" />
+                <xsl:text>,&#x20;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$address/eCH-0010:person">
+                <xsl:value-of select="$address/eCH-0010:person/eCH-0010:firstName" />
+                <xsl:text>&#x20;</xsl:text>
+                <xsl:value-of select="$address/eCH-0010:person/eCH-0010:lastName" />
+                <xsl:text>,&#x20;</xsl:text>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:value-of select="$address/eCH-0010:addressInformation/eCH-0010:street" />
+        <xsl:text>&#x20;</xsl:text>
+        <xsl:value-of select="$address/eCH-0010:addressInformation/eCH-0010:houseNumber" />
+        <xsl:text>,&#x20;</xsl:text>
+        <xsl:value-of select="$address/eCH-0010:addressInformation/eCH-0010:swissZipCode" />
+        <xsl:text>&#x20;</xsl:text>
+        <xsl:value-of select="$address/eCH-0010:addressInformation/eCH-0010:town" />
+    </xsl:template>
+
+
+
 
 </xsl:stylesheet>

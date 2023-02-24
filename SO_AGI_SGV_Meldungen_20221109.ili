@@ -39,6 +39,8 @@ VERSION "2022-11-09"  =
       /** Ereignis resp. Meldegrund. Es sind nicht alle Eregnisse gemäss eCH-0132 möglich. Siehe Konzept.
        */
       Meldegrund : (
+        weitere,
+        Entlassung,
         Loeschung(
           !!@ ili2db.dispName="Löschung: Abbruch"
           Abbruch,
@@ -53,7 +55,8 @@ VERSION "2022-11-09"  =
         Teilabbruch,
         Umbau,
         Anbau,
-        Neubau
+        Neubau,
+        Wiederaufnahme
       );
       /** Baujahr des versicherten Objektes
        */
@@ -72,13 +75,15 @@ VERSION "2022-11-09"  =
       EGID : 1 .. 999999999;
       /** Zeitpunkt des Beginns der Versicherung
        */
-      Versicherungsbeginn : INTERLIS.XMLTime;
+      Versicherungsbeginn : INTERLIS.XMLDate;
       /** Name und Adresses des Verwalters
        */
       Verwalter : MANDATORY TEXT*2000;
       /** Name und Adresse des Eigentümers
        */
       Eigentuemer : MANDATORY TEXT*2000;
+      /** Baulicher Mehrwert
+       */
       Baulicher_Mehrwert : 1 .. 999999999;
       /** Bearbeitungsstatus
        */
@@ -90,6 +95,12 @@ VERSION "2022-11-09"  =
       /** Abschlussdatum der Nachführung
        */
       Datum_abgeschlossen : INTERLIS.XMLDate;
+      /** Identifikator der eCH-Meldung: delivery.deliveryHeader.messageId
+       */
+      MessageId : MANDATORY TEXT*50;
+      /** Versicherungsnummer des versicherten Objektes aus eCH-Meldung: delivery.XXXX.insuranceObject.insuranceNumber.
+       */
+      InsuranceObjectId : TEXT*50;
     END Meldung;
 
   END Meldungen;
