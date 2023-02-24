@@ -40,8 +40,6 @@
         <!-- TODO 
         * Versicherungsbeginn: falsch im XML (metaDataName) oder fehlt gänzlich. Sollte mandatory sein.
         * Umgang mit den verschiednene eventType in der Transformation: sind die immer sehr ähnlich? fehlt einfach was? (-> zusätliche if prüfung)
-        * message-id als tid?
-        * policyholder zusammenfügen / Umgang mit mehreren 
         -->
 
         <!-- Bemerkungen
@@ -50,7 +48,6 @@
           - pro building und pro Grundstück ein INTERLIS-Objekt?
           - jedoch werden immer alle Eingänge (buildingEntranceInformation) allen INTERLIS-Objekte zugewiesen
           -> Ich nehme nur jeweils das erste Element? Nachfragen bei SGV.
-        * policyholder kann es mehrere geben. Sie werden zusammengefügt. TPODO
         * Fehlt EGID? Gemäss SGV führen sie diesen nicht.
 
 
@@ -166,10 +163,8 @@
                 <xsl:value-of select="eCH-0132:insuranceObject/eCH-0129:insuranceNumber" />
             </InsuranceObjectId>
 
-
         </SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung>
     </xsl:template>
-
 
     <xsl:template name="custodianOrPolicyholder">
         <xsl:param name="address" />
@@ -193,8 +188,5 @@
         <xsl:text>&#x20;</xsl:text>
         <xsl:value-of select="$address/eCH-0010:addressInformation/eCH-0010:town" />
     </xsl:template>
-
-
-
 
 </xsl:stylesheet>
