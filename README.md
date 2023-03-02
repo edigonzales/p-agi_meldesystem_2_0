@@ -1,11 +1,17 @@
 # p-agi_meldesystem_2_0
 
+## Fragen
+- Organisation Schemen: Nur auf Edit, da editiert wird von den Geometern? Zwei Schemen? "_import" --> "_work". Damit Trennung von Import der SGV-Meldungen klar?
+- Modell umbenennen? Da nicht nur Meldungen von SGV.
+- Berechtigungen? Wie geht das genau? Hängt auch ab von Schemaorganisation.
+
+
+## fubar
+
 Key muss für JSch umformatiert werden:
 ```
 ssh-keygen -p -f id_rsa -m pem -P "" -N ""
 ```
-
-
 
 Testrequest für Integration GRETL:
 
@@ -21,9 +27,6 @@ java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/Spezial
 
 
 java -jar /Users/stefan/apps/SaxonHE11-5J/saxon-he-11.5.jar -s:meldungen/Spezialfaelle/MeldungAnGeometer_G-0013648_20230210_220000_Abbruch.xml -xsl:eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl -o:MeldungAnGeometer_G-0013648_20230210_220000_Abbruch.xtf
-
-
-
 ```
 
 
