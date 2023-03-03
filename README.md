@@ -8,6 +8,7 @@
 - Modell umbenennen? Da nicht nur Meldungen von SGV.
 - Berechtigungen? Wie geht das genau? Hängt auch ab von Schemaorganisation.
 - Eigentümer: es wird eine Dummy-Eigentümer reingeschrieben, weil bei der Cancellation dieser fehlt. Ist nur dazu gedacht, dass man testeshalber importieren kann.
+- Daten landen auf S3, notfalls könnte man sie wieder auf den SFTP kopieren
 
 ## Develop
 

@@ -113,13 +113,12 @@ tasks.register('deleteDataOnFtp') {
                 fileTree(downloadFolder).matching {
                     include "**/*.xml"
                 }.each {
-                    println "Deleting: " + it
-                    // TODO
-                    // - Ich benötige nur den Filenamen
-                    // remoteDirectory + ...
+                    def fileName = remoteDirectory + it.getName()
+                    println "Deleting: " + fileName
+                    // ************ TODO !!!!!!!!!!
                     def ret = remove '/remote/file'
                     if (!ret) {
-                        println "throw GradleException"
+                        throw new GradleException("could not delete: " + fileName)
                     }
                 }
             }
