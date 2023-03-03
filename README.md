@@ -2,8 +2,48 @@
 
 ## Fragen
 - Organisation Schemen: Nur auf Edit, da editiert wird von den Geometern? Zwei Schemen? "_import" --> "_work". Damit Trennung von Import der SGV-Meldungen klar?
+  * Zwei Schema: Gibt auch besseren Schutz, wenn mal was schief läuft. Man könnte mit SQL (v.a. weil im gleichen Schema) besser steuern was ins "Work"-Schema kommt. Sonst wird alles ersetzt
+  * Inhalte im "_import"-Schema könnte glaub so beliebig ersetzt werden oder gelöscht werden.
+  * Usecase 1-Schema-Problem: Daten werden importiert aber beim Löschen geht was schief. Geometer verändertn Daten. Daten werden nochmals importiert (also GRETL-Jobs läuft nochmals).
 - Modell umbenennen? Da nicht nur Meldungen von SGV.
 - Berechtigungen? Wie geht das genau? Hängt auch ab von Schemaorganisation.
+- Eigentümer: es wird eine Dummy-Eigentümer reingeschrieben, weil bei der Cancellation dieser fehlt. Ist nur dazu gedacht, dass man testeshalber importieren kann.
+
+## Develop
+
+```
+export ORG_GRADLE_PROJECT_dbUriEdit=jdbc:postgresql://edit-db/edit
+export ORG_GRADLE_PROJECT_dbUserEditDdl=ddluser
+export ORG_GRADLE_PROJECT_dbPwdEditDdl=ddluser
+export ORG_GRADLE_PROJECT_dbUriPub=jdbc:postgresql://pub-db/pub
+export ORG_GRADLE_PROJECT_dbUserPubDdl=ddluser
+export ORG_GRADLE_PROJECT_dbPwdPubDdl=ddluser
+export ORG_GRADLE_PROJECT_gretlEnvironment=test
+export ORG_GRADLE_PROJECT_ftpServerSogis=xxxxx
+export ORG_GRADLE_PROJECT_ftpUserSogisGemdat=yyyyy
+export ORG_GRADLE_PROJECT_awsAccessKeyAgi=wwwww
+export ORG_GRADLE_PROJECT_awsSecretAccessKeyAgi=zzzzz
+```
+
+### Schema
+```
+./start-gretl.sh --docker-image sogis/gretl:latest --docker-network schema-jobs_default --topic-name agi_av_meldewesen --schema-dirname schema createRolesDevelopment
+./start-gretl.sh --docker-image sogis/gretl:latest --docker-network schema-jobs_default --topic-name agi_av_meldewesen --schema-dirname schema dropSchema createSchema configureSchema grantPrivileges
+
+```
+
+### Gretl
+
+```
+export ORG_GRADLE_PROJECT_dbUriEdit=jdbc:postgresql://localhost:54321/edit
+export ORG_GRADLE_PROJECT_dbUserEdit=ddluser
+export ORG_GRADLE_PROJECT_dbPwdEdit=ddluser
+
+```
+
+```
+
+```
 
 
 ## fubar

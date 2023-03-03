@@ -84,7 +84,7 @@ VERSION "2022-11-09"  =
       Eigentuemer : MANDATORY TEXT*2000;
       /** Baulicher Mehrwert
        */
-      Baulicher_Mehrwert : 1 .. 999999999;
+      Baulicher_Mehrwert : -999999999 .. 999999999;
       /** Bearbeitungsstatus
        */
       Status : (

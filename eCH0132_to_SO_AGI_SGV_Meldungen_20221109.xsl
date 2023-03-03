@@ -31,7 +31,7 @@
 
     <xsl:template match="/eCH-0132:delivery">
         <TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
-        <HEADERSECTION SENDER="eCH0132_to_xtf" VERSION="2.3">
+        <HEADERSECTION SENDER="eCH0132" VERSION="2.3">
             <MODELS>
             <MODEL NAME="SO_AGI_SGV_Meldungen_20221109" VERSION="2022-11-09" URI="https://agi.so.ch"/>
             </MODELS>
@@ -50,11 +50,9 @@
           -> Ich nehme nur jeweils das erste Element? Nachfragen bei SGV.
         * Fehlt EGID? Gemäss SGV führen sie diesen nicht.
 
-
-
-
-
         * Gemeinde wird nicht geliefert. Dünkt mich. Wir könntes sie mit einem Update updaten (nache dem Import oder beim Transfer in Pub)
+
+        * Kann Mehrwert negativ sein? (er kann aber anscheinend 0 sein)
         -->
 
         <DATASECTION>
@@ -62,7 +60,6 @@
 
                 <xsl:message>Hallo Delivery</xsl:message>
 
-                <!--Eventuell OR, falls alle ähnlich/gleich sind.-->
                 <xsl:apply-templates select="eCH-0132:newInsuranceValue | eCH-0132:cancellation" /> 
 
             </SO_AGI_SGV_Meldungen_20221109.Meldungen>
@@ -137,14 +134,21 @@
             </Verwalter>
 
             <Eigentuemer xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:for-each select="eCH-0132:policyholder/eCH-0132:mailAddress">
-                    <xsl:call-template name="custodianOrPolicyholder">
-                        <xsl:with-param name="address" select="." />
-                    </xsl:call-template>
-                    <xsl:if test="position() != last()">
-                        <xsl:text>&#x20;/&#x20;</xsl:text>
-                    </xsl:if>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="eCH-0132:policyholder/eCH-0132:mailAddress">
+                        <xsl:for-each select="eCH-0132:policyholder/eCH-0132:mailAddress">
+                            <xsl:call-template name="custodianOrPolicyholder">
+                                <xsl:with-param name="address" select="." />
+                            </xsl:call-template>
+                            <xsl:if test="position() != last()">
+                                <xsl:text>&#x20;/&#x20;</xsl:text>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>DUMMY</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
             </Eigentuemer>
 
             <Baulicher_Mehrwert xmlns="http://www.interlis.ch/INTERLIS2.3">
@@ -179,6 +183,9 @@
                 <xsl:value-of select="$address/eCH-0010:person/eCH-0010:lastName" />
                 <xsl:text>,&#x20;</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>DUMMY</xsl:text>
+            </xsl:otherwise>
         </xsl:choose>
         <xsl:value-of select="$address/eCH-0010:addressInformation/eCH-0010:street" />
         <xsl:text>&#x20;</xsl:text>

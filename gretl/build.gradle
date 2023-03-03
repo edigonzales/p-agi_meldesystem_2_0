@@ -52,8 +52,8 @@ def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen$bucketSuffix"
 remotes {
     sftpServer {
         host = "${ftpServerSogis}"
-        user = "${ftpUserSogis}"
-        identity = file('/Users/stefan/tmp/sftp/id_rsa')
+        user = "${ftpUserSogisGemdat}"
+        identity = file('/Users/stefan/tmp/ssh_sgv_converted/id_rsa')
     }
 }
 
@@ -85,15 +85,65 @@ tasks.register('uploadToS3', S3Upload) {
 }
 
 tasks.register('transform', XslTransformer) {
-    description = "Transformiert die eCH-0156-Meldungen nach INTERLIS."
+    description = "Transformiert die eCH-0132-Meldungen nach INTERLIS."
     xslFileName = "eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl"
     xmlFile = fileTree(downloadFolder).include { it.file.name.toLowerCase().endsWith("xml") }
     outDirectory = file(transformFolder)
 }
 
-// task import
+tasks.register('importData', Ili2pgReplace) {
+    description = 'Import der Meldungen als XTF in die Datenbank'
+    database = [dbUriEdit, dbUserEdit, dbPwdEdit]
+    dbschema = "agi_av_meldewesen_v1"
+    models = 'SO_AGI_SGV_Meldungen_20221109'
+    dataFile = fileTree(dir: transformFolder, include: '*.xtf')
+    dataset = dataFile
+    disableValidation = false
+}
 
-// task delete
+// Lokales Löschen nicht notwendig, da im Container.
+// tasks.register('deleteDataOnFtp') {
+//     description = "Delete files on SFTP server"
+//     doLast {
+//         fileTree(downloadFolder).matching {
+//             include "**/*.xml"
+//         }.each {
+//             println "Deleting: " + it
+//             ssh.settings {
+//                 knownHosts = allowAnyHosts
+//             }
 
-// ne Loop über die Files, die gelöscht werden sollen. Sollte funktionieren, da im doLast
+//             ssh.run {
+//                 session(remotes.sftpServer) {
+//                     // remoteDirectory + ...
+//                     remove '/remote/file'
+//                 }
+//             }
+//         }
+//         println "Files deleted on SFTP server"
+//     }
+// }
 
+tasks.register('deleteDataOnFtp') {
+    description = "Delete files on SFTP server"
+    doLast {
+        ssh.settings {
+            knownHosts = allowAnyHosts
+        }
+        ssh.run {
+            session(remotes.sftpServer) {
+                fileTree(downloadFolder).matching {
+                    include "**/*.xml"
+                }.each {
+                    println "Deleting: " + it
+                // remoteDirectory + ...
+                    def ret = remove '/remote/file'
+                    if (!ret) {
+                        println "throw GradleException"
+                    }
+                }
+            }
+        }
+        println "Files deleted on SFTP server"
+    }
+}
