@@ -102,28 +102,6 @@ tasks.register('importData', Ili2pgReplace) {
 }
 
 // Lokales Löschen nicht notwendig, da im Container.
-// tasks.register('deleteDataOnFtp') {
-//     description = "Delete files on SFTP server"
-//     doLast {
-//         fileTree(downloadFolder).matching {
-//             include "**/*.xml"
-//         }.each {
-//             println "Deleting: " + it
-//             ssh.settings {
-//                 knownHosts = allowAnyHosts
-//             }
-
-//             ssh.run {
-//                 session(remotes.sftpServer) {
-//                     // remoteDirectory + ...
-//                     remove '/remote/file'
-//                 }
-//             }
-//         }
-//         println "Files deleted on SFTP server"
-//     }
-// }
-
 tasks.register('deleteDataOnFtp') {
     description = "Delete files on SFTP server"
     doLast {
@@ -136,7 +114,9 @@ tasks.register('deleteDataOnFtp') {
                     include "**/*.xml"
                 }.each {
                     println "Deleting: " + it
-                // remoteDirectory + ...
+                    // TODO
+                    // - Ich benötige nur den Filenamen
+                    // remoteDirectory + ...
                     def ret = remove '/remote/file'
                     if (!ret) {
                         println "throw GradleException"
