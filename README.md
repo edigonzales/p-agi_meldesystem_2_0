@@ -9,6 +9,8 @@
 - Berechtigungen? Wie geht das genau? Hängt auch ab von Schemaorganisation.
 - Eigentümer: es wird eine Dummy-Eigentümer reingeschrieben, weil bei der Cancellation dieser fehlt. Ist nur dazu gedacht, dass man testeshalber importieren kann.
 - Daten landen auf S3, notfalls könnte man sie wieder auf den SFTP kopieren
+- SGV schickt auch Testdaten auf den Prod-SFTP. Unterscheidbar in "<testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>":
+  * Entweder mit Groovy-XML in einem doLast/First rausfiltern oder Modell erweitern und dann beim 2-Schema-Approach filtern.
 
 ## Develop
 
