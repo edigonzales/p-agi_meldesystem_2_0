@@ -7,14 +7,14 @@ apply plugin: "org.hidetake.ssh"
 
 buildscript {
     repositories {
-        mavenLocal()
+        //mavenLocal()
         maven { url "http://jars.interlis.ch" }
         maven { url "https://repo.osgeo.org/repository/release/" }
         maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'ch.so.agi', name: 'gretl',  version: '2.2.LOCALBUILD'
+        classpath group: 'ch.so.agi', name: 'gretl',  version: '2.2.414'
         classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
     }
 }
@@ -25,7 +25,7 @@ defaultTasks 'downloadFromSgv'
 def pathToTempFolder = System.getProperty("java.io.tmpdir")
 def downloadFolder = Paths.get(pathToTempFolder, "download").toFile()
 def transformFolder = Paths.get(pathToTempFolder, "transform").toFile()
-def remoteDirectory = "sgv-gemdat/sgv/echo0132/"
+def remoteDirectory = "sgv-gemdat/sgv/ech0132-test/"
 
 println downloadFolder
 println transformFolder
@@ -53,7 +53,7 @@ remotes {
     sftpServer {
         host = "${ftpServerSogis}"
         user = "${ftpUserSogisGemdat}"
-        identity = file('/Users/stefan/tmp/ssh_sgv_converted/id_rsa')
+        identity = file('/Users/stefan/keys/sgv/id_rsa')
     }
 }
 
@@ -73,7 +73,7 @@ tasks.register('downloadFromSgv') {
     }
 }
 
-tasks.register('uploadToS3', S3Upload) {
+tasks.register('uploadXmlToS3', S3Upload) {
     description = "Original XML-Dateien (eCH-0132-Meldungen) nach S3 hochladen."
     accessKey = awsAccessKeyAgi
     secretKey = awsSecretAccessKeyAgi
@@ -86,21 +86,33 @@ tasks.register('uploadToS3', S3Upload) {
 
 tasks.register('transform', XslTransformer) {
     description = "Transformiert die eCH-0132-Meldungen nach INTERLIS."
-    xslFileName = "eCH0132_to_SO_AGI_SGV_Meldungen_20221109.xsl"
+    xslFile = file("./eCH0132_xml2xtf_V0_1.xsl")
     xmlFile = fileTree(downloadFolder).include { it.file.name.toLowerCase().endsWith("xml") }
     outDirectory = file(transformFolder)
+}
+
+tasks.register('uploadXtfToS3', S3Upload) {
+    description = "XTF-Dateien nach S3 hochladen."
+    accessKey = awsAccessKeyAgi
+    secretKey = awsSecretAccessKeyAgi
+    sourceDir = file(transformFolder)
+    endPoint = "https://s3.eu-central-1.amazonaws.com"
+    region = "eu-central-1"
+    bucketName = sgvMeldungenBucket
+    acl = "private"
 }
 
 tasks.register('importData', Ili2pgReplace) {
     description = 'Import der Meldungen als XTF in die Datenbank'
     database = [dbUriEdit, dbUserEdit, dbPwdEdit]
-    dbschema = "agi_av_meldewesen_v1"
+    dbschema = "agi_av_meldewesen_import_v1"
     models = 'SO_AGI_SGV_Meldungen_20221109'
     dataFile = fileTree(dir: transformFolder, include: '*.xtf')
     dataset = dataFile
     disableValidation = false
 }
 
+// Löschen der Daten auf dem FTP-Server.
 // Lokales Löschen nicht notwendig, da im Container.
 tasks.register('deleteDataOnFtp') {
     description = "Delete files on SFTP server"
