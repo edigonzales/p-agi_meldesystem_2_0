@@ -69,18 +69,6 @@
                 </Lage>
             </xsl:if>
 
-            <Grundstuecksnummer xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="number(tokenize(eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:realestateIdentification/eCH-0129:number, '-')[last()])" />
-            </Grundstuecksnummer>
-
-            <EGRID xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:realestateIdentification/eCH-0129:EGRID" />
-            </EGRID>
-
-            <NBIdent xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'NBIdent']/following-sibling::eCH-0129:metaDataValue" />
-            </NBIdent>
-
             <Datum_Meldung xmlns="http://www.interlis.ch/INTERLIS2.3">
                 <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
             </Datum_Meldung>
@@ -89,55 +77,109 @@
                 <xsl:value-of select="key('myns:lookup-eventType', eCH-0132:event, $myns:eventType-lookup)/@value"/>
             </Meldegrund>
 
-            <Baujahr xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:dateOfConstruction/eCH-0129:year" />
-            </Baujahr>
+            <!-- Die notwendingen Infos für Löschung stecken XSD-bedingt im extesion-Element. Sad but true. -->
+            <xsl:choose>
+                <xsl:when test="not(eCH-0132:event = (19, 20, 21))">
+                    <xsl:message>Event type belongs to newInsuranceobject or newInsuranceValue.</xsl:message>
 
-            <Gebaeudebezeichnung xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="key('myns:lookup-eventType', eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:buildingCategory, $myns:buildingCategoryType-lookup)/@value"/>
-            </Gebaeudebezeichnung>
+                    <Grundstuecksnummer xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="number(tokenize(eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:realestateIdentification/eCH-0129:number, '-')[last()])" />
+                    </Grundstuecksnummer>
 
-            <Gebaeudeadresse xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:street/eCH-0129:description/eCH-0129:descriptionLong" />
-                <xsl:text>&#x20;</xsl:text>
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:buildingEntrance/eCH-0129:buildingEntranceNo" />
-                <xsl:text>,&#x20;</xsl:text>
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:swissZipCode" />
-                <xsl:text>&#x20;</xsl:text>
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:name/eCH-0129:nameLong" />
-            </Gebaeudeadresse>
+                    <EGRID xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:realestateIdentification/eCH-0129:EGRID" />
+                    </EGRID>
 
-            <Versicherungsbeginn xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:insuranceValue/eCH-0129:validFrom" />
-            </Versicherungsbeginn>
+                    <NBIdent xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'NBIdent']/following-sibling::eCH-0129:metaDataValue" />
+                    </NBIdent>
 
-            <Verwalter xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:call-template name="custodianOrPolicyholder">
-                    <xsl:with-param name="address" select="eCH-0132:custodian/eCH-0132:mailAddress" />
-                </xsl:call-template>
-            </Verwalter>
+                    <Baujahr xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:dateOfConstruction/eCH-0129:year" />
+                    </Baujahr>
 
-            <Eigentuemer xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:choose>
-                    <xsl:when test="eCH-0132:policyholder/eCH-0132:mailAddress">
-                        <xsl:for-each select="eCH-0132:policyholder/eCH-0132:mailAddress">
-                            <xsl:call-template name="custodianOrPolicyholder">
-                                <xsl:with-param name="address" select="." />
-                            </xsl:call-template>
-                            <xsl:if test="position() != last()">
-                                <xsl:text>&#x20;/&#x20;</xsl:text>
-                            </xsl:if>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>DUMMY</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </Eigentuemer>
+                    <Gebaeudebezeichnung xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="key('myns:lookup-eventType', eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:buildingCategory, $myns:buildingCategoryType-lookup)/@value"/>
+                    </Gebaeudebezeichnung>
 
-            <Baulicher_Mehrwert xmlns="http://www.interlis.ch/INTERLIS2.3">
-                <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'benefit']/following-sibling::eCH-0129:metaDataValue" />
-            </Baulicher_Mehrwert>
+                    <Gebaeudeadresse xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:street/eCH-0129:description/eCH-0129:descriptionLong" />
+                        <xsl:text>&#x20;</xsl:text>
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:buildingEntrance/eCH-0129:buildingEntranceNo" />
+                        <xsl:text>,&#x20;</xsl:text>
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:swissZipCode" />
+                        <xsl:text>&#x20;</xsl:text>
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:name/eCH-0129:nameLong" />
+                    </Gebaeudeadresse>
+
+                    <Versicherungsbeginn xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:insuranceValue/eCH-0129:validFrom" />
+                    </Versicherungsbeginn>
+
+                    <Verwalter xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:call-template name="custodianOrPolicyholder">
+                            <xsl:with-param name="address" select="eCH-0132:custodian/eCH-0132:mailAddress" />
+                        </xsl:call-template>
+                    </Verwalter>
+
+                    <Eigentuemer xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:choose>
+                            <xsl:when test="eCH-0132:policyholder/eCH-0132:mailAddress">
+                                <xsl:for-each select="eCH-0132:policyholder/eCH-0132:mailAddress">
+                                    <xsl:call-template name="custodianOrPolicyholder">
+                                        <xsl:with-param name="address" select="." />
+                                    </xsl:call-template>
+                                    <xsl:if test="position() != last()">
+                                        <xsl:text>&#x20;/&#x20;</xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>DUMMY</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </Eigentuemer>
+
+                    <Baulicher_Mehrwert xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'benefit']/following-sibling::eCH-0129:metaDataValue" />
+                    </Baulicher_Mehrwert>
+
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:message>Event type belongs to a cancellation.</xsl:message>
+
+                    <Grundstuecksnummer xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="number(tokenize(eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:realestateIdentification/eCH-0129:number, '-')[last()])" />
+                    </Grundstuecksnummer>
+
+                    <EGRID xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:realestateIdentification/eCH-0129:EGRID" />
+                    </EGRID>
+
+                    <NBIdent xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:realestate[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'NBIdent']/following-sibling::eCH-0129:metaDataValue" />
+                    </NBIdent>
+
+                    <Baujahr xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:dateOfConstruction/eCH-0129:year" />
+                    </Baujahr>
+
+                    <Gebaeudebezeichnung xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="key('myns:lookup-eventType', eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:buildingCategory, $myns:buildingCategoryType-lookup)/@value"/>
+                    </Gebaeudebezeichnung>
+
+                    <Gebaeudeadresse xmlns="http://www.interlis.ch/INTERLIS2.3">
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:street/eCH-0129:description/eCH-0129:descriptionLong" />
+                        <xsl:text>&#x20;</xsl:text>
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:buildingEntrance/eCH-0129:buildingEntranceNo" />
+                        <xsl:text>,&#x20;</xsl:text>
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:swissZipCode" />
+                        <xsl:text>&#x20;</xsl:text>
+                        <xsl:value-of select="eCH-0132:extension/eCH-0132:buildingInformation[1]/eCH-0132:buildingEntranceInformation[1]/eCH-0132:localisationInformation/eCH-0132:locality/eCH-0129:name/eCH-0129:nameLong" />
+                    </Gebaeudeadresse>
+
+                </xsl:otherwise>
+            </xsl:choose>
 
             <!-- Jede Meldung von der SGV erhält den Bearbeitungsstatus "neu". Wird später durch NFG verändert. -->
             <Status xmlns="http://www.interlis.ch/INTERLIS2.3">

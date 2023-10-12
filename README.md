@@ -115,10 +115,11 @@ java -jar /Users/stefan/apps/SaxonHE11-6J/saxon-he-11.6.jar -s:meldungen_2023-10
 EventType 18=Entlassung
 java -jar /Users/stefan/apps/SaxonHE11-6J/saxon-he-11.6.jar -s:meldungen_2023-10/MeldungAnGeometer_G-0039899_20231011_110332.xml -xsl:eCH0132_xml2xtf_V0_1.xsl -o:MeldungAnGeometer_G-0039899_20231011_110332.xtf
 
-
-NOCH NICHT Ausprobiert.
 EventType 19=Löschung: Abbruch
-java -jar /Users/stefan/apps/SaxonHE11-6J/saxon-he-11.6.jar -s:meldungen_2023-10/MeldungAnGeometer_G-0040475_20231011_110334.xml -xsl:eCH0132_xml2xtf_V0_1.xsl -o:MeldungAnGeometer_G-0040475_20231011_110334.xtf
+java -jar /Users/stefan/apps/SaxonHE11-6J/saxon-he-11.6.jar -s:meldungen_2023-10/MeldungAnGeometer_G-0039881_20231011_110333.xml -xsl:eCH0132_xml2xtf_V0_1.xsl -o:MeldungAnGeometer_G-0039881_20231011_110333.xtf
+
+EventType 19=Löschung: Schaden
+java -jar /Users/stefan/apps/SaxonHE11-6J/saxon-he-11.6.jar -s:meldungen_2023-10/MeldungAnGeometer_G-0041377_20231011_110333.xml -xsl:eCH0132_xml2xtf_V0_1.xsl -o:MeldungAnGeometer_G-0041377_20231011_110333.xtf
 
 
 ```
