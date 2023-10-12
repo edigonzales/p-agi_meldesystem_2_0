@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">d772c4b7-323d-4583-839a-835da2b98647</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.19.1</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-10-11T11:03:33.6865731+02:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <cancellation>
+    <event>21</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>f84bc0be-f189-4347-9db9-92f4d727b968</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0041377</insuranceNumber>
+    </insuranceObject>
+    <extension>
+      <buildingInformation>
+        <building>
+          <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <year>1900</year>
+          </dateOfConstruction>
+          <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1060</buildingCategory>
+        </building>
+        <realestate>
+          <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <EGRID>CH940632753221</EGRID>
+            <number>480</number>
+          </realestateIdentification>
+          <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+          <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <metaDataName>NBIdent</metaDataName>
+            <metaDataValue>SO0200002429</metaDataValue>
+          </namedMetaData>
+        </realestate>
+        <buildingEntranceInformation>
+          <buildingEntrance>
+            <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">6</buildingEntranceNo>
+            <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <IdCategory>BuildingEntrance</IdCategory>
+              <Id>d23b3f9d-0558-46d7-9a30-178422c5f5e9</Id>
+            </localID>
+            <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+          </buildingEntrance>
+          <localisationInformation>
+            <locality>
+              <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4716</swissZipCode>
+              <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+              <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+                <nameLong>Welschenrohr</nameLong>
+              </name>
+            </locality>
+            <street>
+              <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+                <language>9901</language>
+                <descriptionLong>Hauptstrasse</descriptionLong>
+              </description>
+            </street>
+          </localisationInformation>
+        </buildingEntranceInformation>
+      </buildingInformation>
+    </extension>
+  </cancellation>
+</delivery>

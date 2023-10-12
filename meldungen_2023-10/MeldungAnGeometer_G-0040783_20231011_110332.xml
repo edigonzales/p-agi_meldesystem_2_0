@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">df2c5977-46a1-4449-ae12-2e599f5ffba0</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.19.1</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-10-11T11:03:32.5928119+02:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <cancellation>
+    <event>19</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>9ca0faf0-b258-49ea-b148-1cea50607a1f</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0040783</insuranceNumber>
+    </insuranceObject>
+    <extension>
+      <buildingInformation>
+        <building>
+          <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <year>1955</year>
+          </dateOfConstruction>
+          <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1060</buildingCategory>
+        </building>
+        <realestate>
+          <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <EGRID>CH410693327667</EGRID>
+            <number>530</number>
+          </realestateIdentification>
+          <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+          <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <metaDataName>NBIdent</metaDataName>
+            <metaDataValue>SO0200002428</metaDataValue>
+          </namedMetaData>
+        </realestate>
+        <buildingEntranceInformation>
+          <buildingEntrance>
+            <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">25</buildingEntranceNo>
+            <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <IdCategory>BuildingEntrance</IdCategory>
+              <Id>8df94043-f912-4af1-a308-cdc97888a51f</Id>
+            </localID>
+            <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+          </buildingEntrance>
+          <localisationInformation>
+            <locality>
+              <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4717</swissZipCode>
+              <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+              <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+                <nameLong>Mümliswil</nameLong>
+              </name>
+            </locality>
+            <street>
+              <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+                <language>9901</language>
+                <descriptionLong>Förstlenweg</descriptionLong>
+              </description>
+            </street>
+          </localisationInformation>
+        </buildingEntranceInformation>
+      </buildingInformation>
+    </extension>
+  </cancellation>
+</delivery>

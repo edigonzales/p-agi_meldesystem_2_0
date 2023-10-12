@@ -37,30 +37,14 @@
             </MODELS>
         </HEADERSECTION>
 
-        <!-- TODO 
-        * Versicherungsbeginn: falsch im XML (metaDataName) oder fehlt gänzlich. Sollte mandatory sein.
-        * Umgang mit den verschiednene eventType in der Transformation: sind die immer sehr ähnlich? fehlt einfach was? (-> zusätliche if prüfung)
-        -->
-
         <!-- Bemerkungen
-        * Pro Meldung (z.B. newInsuranceValue) sind mehrere "buidlingInformationType" möglich. Dort sind dann wieder mehrere Grundstücke möglich. 
-          Wie mache ich das grundsätzlich und wie mit XSLT? (-> TID? position()?)
-          - pro building und pro Grundstück ein INTERLIS-Objekt?
-          - jedoch werden immer alle Eingänge (buildingEntranceInformation) allen INTERLIS-Objekte zugewiesen
-          -> Ich nehme nur jeweils das erste Element? Nachfragen bei SGV.
-        * Fehlt EGID? Gemäss SGV führen sie diesen nicht.
 
-        * Gemeinde wird nicht geliefert. Dünkt mich. Wir könntes sie mit einem Update updaten (nache dem Import oder beim Transfer in Pub)
-
-        * Kann Mehrwert negativ sein? (er kann aber anscheinend 0 sein)
         -->
 
         <DATASECTION>
             <SO_AGI_SGV_Meldungen_20221109.Meldungen BID="SO_AGI_SGV_Meldungen_20221109.Meldungen">
 
-                <xsl:message>Hallo Delivery</xsl:message>
-
-                <xsl:apply-templates select="eCH-0132:newInsuranceValue | eCH-0132:cancellation" /> 
+                <xsl:apply-templates select="eCH-0132:newInsuranceValue | eCH-0132:newInsuranceValue | eCH-0132:cancellation" /> 
 
             </SO_AGI_SGV_Meldungen_20221109.Meldungen>
 
@@ -68,8 +52,8 @@
         </TRANSFER>
     </xsl:template>
 
-    <xsl:template match="eCH-0132:newInsuranceValue | eCH-0132:cancellation">
-        <xsl:message>Hallo newInsuranceValue or cancellation</xsl:message>
+    <xsl:template match="eCH-0132:newInsuranceobject | eCH-0132:newInsuranceValue | eCH-0132:cancellation">
+        <xsl:message>Found newInsuranceobject, newInsuranceValue or cancellation element.</xsl:message>
 
         <SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung xmlns="http://www.interlis.ch/INTERLIS2.3" TID="1">
             <xsl:if test="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:coordinates">
@@ -155,6 +139,7 @@
                 <xsl:value-of select="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:namedMetaData/eCH-0129:metaDataName[text() = 'benefit']/following-sibling::eCH-0129:metaDataValue" />
             </Baulicher_Mehrwert>
 
+            <!-- Jede Meldung von der SGV erhält den Bearbeitungsstatus "neu". Wird später durch NFG verändert. -->
             <Status xmlns="http://www.interlis.ch/INTERLIS2.3">
                 <xsl:text>neu</xsl:text>
             </Status>

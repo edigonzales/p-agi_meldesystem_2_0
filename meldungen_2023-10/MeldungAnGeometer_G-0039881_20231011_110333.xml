@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<delivery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ech.ch/xmlns/eCH-0132/3">
+  <deliveryHeader>
+    <senderId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">ie4g59</senderId>
+    <messageId xmlns="http://www.ech.ch/xmlns/eCH-0058/5">cdeb15a2-776c-4240-bbcd-f634727f0b8c</messageId>
+    <messageType xmlns="http://www.ech.ch/xmlns/eCH-0058/5">fj987ejk</messageType>
+    <sendingApplication xmlns="http://www.ech.ch/xmlns/eCH-0058/5">
+      <manufacturer>Gemdat AG</manufacturer>
+      <product>gemdat versicherung</product>
+      <productVersion>7.19.1</productVersion>
+    </sendingApplication>
+    <messageDate xmlns="http://www.ech.ch/xmlns/eCH-0058/5">2023-10-11T11:03:33.436566+02:00</messageDate>
+    <action xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</action>
+    <testDeliveryFlag xmlns="http://www.ech.ch/xmlns/eCH-0058/5">1</testDeliveryFlag>
+  </deliveryHeader>
+  <cancellation>
+    <event>19</event>
+    <insuranceObject>
+      <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+        <IdCategory>Building</IdCategory>
+        <Id>c8ed9cb8-d33c-485b-967f-f8f6806f42b0</Id>
+      </localID>
+      <insuranceNumber xmlns="http://www.ech.ch/xmlns/eCH-0129/6">G-0039881</insuranceNumber>
+    </insuranceObject>
+    <extension>
+      <buildingInformation>
+        <building>
+          <dateOfConstruction xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <year>1847</year>
+          </dateOfConstruction>
+          <buildingCategory xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1030</buildingCategory>
+        </building>
+        <realestate>
+          <realestateIdentification xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <EGRID>CH567632061179</EGRID>
+            <number>531</number>
+          </realestateIdentification>
+          <realestateType xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</realestateType>
+          <namedMetaData xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+            <metaDataName>NBIdent</metaDataName>
+            <metaDataValue>SO0200002427</metaDataValue>
+          </namedMetaData>
+        </realestate>
+        <buildingEntranceInformation>
+          <buildingEntrance>
+            <buildingEntranceNo xmlns="http://www.ech.ch/xmlns/eCH-0129/6">19</buildingEntranceNo>
+            <localID xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+              <IdCategory>BuildingEntrance</IdCategory>
+              <Id>b54e346f-63e4-455a-9a32-53e8c8d08cb6</Id>
+            </localID>
+            <isOfficialAddress xmlns="http://www.ech.ch/xmlns/eCH-0129/6">1</isOfficialAddress>
+          </buildingEntrance>
+          <localisationInformation>
+            <locality>
+              <swissZipCode xmlns="http://www.ech.ch/xmlns/eCH-0129/6">4713</swissZipCode>
+              <swissZipCodeAddOn xmlns="http://www.ech.ch/xmlns/eCH-0129/6">00</swissZipCodeAddOn>
+              <name xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+                <nameLong>Matzendorf</nameLong>
+              </name>
+            </locality>
+            <street>
+              <description xmlns="http://www.ech.ch/xmlns/eCH-0129/6">
+                <language>9901</language>
+                <descriptionLong>Wengistrasse</descriptionLong>
+              </description>
+            </street>
+          </localisationInformation>
+        </buildingEntranceInformation>
+      </buildingInformation>
+    </extension>
+  </cancellation>
+</delivery>
