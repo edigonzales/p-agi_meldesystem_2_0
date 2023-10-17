@@ -13,7 +13,12 @@ AT "https://agi.so.ch"
 VERSION "2022-11-09"  =
   IMPORTS GeometryCHLV95_V1;
 
+  DOMAIN
+
+    SOOID = OID TEXT*255;
+
   TOPIC Meldungen =
+    OID AS SOOID;
 
     /** Meldungen der SGV abgeleitet aus eCH-0132.
      */
@@ -21,10 +26,6 @@ VERSION "2022-11-09"  =
       /** Koordinate des eingeschätzten Objektes. Kommt von der SGV-Meldung oder wird im Web GIS Client digitalisiert.
        */
       Lage : GeometryCHLV95_V1.Coord2;
-      /** Geometrie des betroffenen Grundstückes. Aus AV-Daten, falls keine Punktkoordinate in der SGV-Meldung vorhanden ist.
-       * 2023-10-11: Braucht es wahrscheinlich nicht mehr. Entweder kommen Koordinaten (relativ exakt von SGV oder anderen) oder wir rechnen PointOnSurface. Für Visualierung ist Punkt besser (zoom out).
-       */
-      Grundstuecksgeometrie : GeometryCHLV95_V1.SurfaceWithOverlaps2mm;
       /** Grundbuchnummer des Grundstückes auf dem das versicherte Objekt liegt.
        */
       Grundstuecksnummer : MANDATORY TEXT*12;
@@ -79,17 +80,17 @@ VERSION "2022-11-09"  =
       Versicherungsbeginn : INTERLIS.XMLDate;
       /** Name und Adresses des Verwalters
        */
-      Verwalter : MANDATORY TEXT*2000;
+      Verwalter : TEXT*2000;
       /** Name und Adresse des Eigentümers
        */
-      Eigentuemer : MANDATORY TEXT*2000;
+      Eigentuemer : TEXT*2000;
       /** Baulicher Mehrwert
        */
       Baulicher_Mehrwert : -999999999 .. 999999999;
       /** Bearbeitungsstatus im Rahmen der NF-Tätigkeit
        */
       Status : (
-        abeschlossen,
+        abgeschlossen,
         in_Arbeit,
         neu
       );
@@ -102,6 +103,12 @@ VERSION "2022-11-09"  =
       /** Versicherungsnummer des versicherten Objektes aus eCH-Meldung: delivery.XXXX.insuranceObject.insuranceNumber.
        */
       InsuranceObjectId : TEXT*50;
+      /** Bemerkungen
+       */
+      Bemerkungen : MTEXT*10000;
+      /** Vom Import- ins Work-Schema dürfen nur neue Meldungen kopiert werden. Dazu wird INSERT ON CONFLICT verwendet. Dieser Befehl braucht einen eindeutigen Schlüssel.
+       */
+      UNIQUE MessageId;
     END Meldung;
 
   END Meldungen;

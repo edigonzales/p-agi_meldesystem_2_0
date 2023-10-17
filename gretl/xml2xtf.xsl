@@ -56,7 +56,9 @@
     <xsl:template match="eCH-0132:newInsuranceobject | eCH-0132:newInsuranceValue | eCH-0132:cancellation">
         <xsl:message>  Found newInsuranceobject, newInsuranceValue or cancellation element.</xsl:message>
 
-        <SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung xmlns="http://www.interlis.ch/INTERLIS2.3" TID="1">
+        <xsl:variable name="tid">_<xsl:value-of select="/eCH-0132:delivery/eCH-0132:deliveryHeader/eCH-0058:messageId"/></xsl:variable> 
+
+        <SO_AGI_SGV_Meldungen_20221109.Meldungen.Meldung xmlns="http://www.interlis.ch/INTERLIS2.3" TID="{$tid}">
             <xsl:if test="eCH-0132:buildingInformation[1]/eCH-0132:building[1]/eCH-0129:coordinates">
                 <Lage xmlns="http://www.interlis.ch/INTERLIS2.3">
                     <COORD xmlns="http://www.interlis.ch/INTERLIS2.3">

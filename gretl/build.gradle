@@ -5,22 +5,7 @@ import java.nio.file.Paths
 apply plugin: 'ch.so.agi.gretl'
 apply plugin: "org.hidetake.ssh"
 
-buildscript {
-    repositories {
-        //mavenLocal()
-        maven { url "http://jars.interlis.ch" }
-        maven { url "https://repo.osgeo.org/repository/release/" }
-        maven { url "https://plugins.gradle.org/m2/" }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'ch.so.agi', name: 'gretl',  version: '2.2.414'
-        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
-    }
-}
-
 defaultTasks 'downloadFromSgv'
-
 
 def pathToTempFolder = System.getProperty("java.io.tmpdir")
 def downloadFolder = Paths.get(pathToTempFolder, "download").toFile()
@@ -51,9 +36,10 @@ def sgvMeldungenBucket = "ch.so.agi.sgv-meldungen$bucketSuffix"
 
 remotes {
     sftpServer {
-        host = "${ftpServerSogis}"
-        user = "${ftpUserSogisGemdat}"
-        identity = file('/Users/stefan/keys/sgv/id_rsa')
+        host = "${sftpServerSogis}"
+        user = "${sftpUserSogisGemdat}"
+        //identity = file('/Users/stefan/keys/sgv/id_rsa')
+        identity = file('/home/gradle/.sshkeys/id_rsa')
     }
 }
 
@@ -86,7 +72,7 @@ tasks.register('uploadXmlToS3', S3Upload) {
 
 tasks.register('transform', XslTransformer) {
     description = "Transformiert die eCH-0132-Meldungen nach INTERLIS."
-    xslFile = file("./eCH0132_xml2xtf_V0_1.xsl")
+    xslFile = file("./xml2xtf.xsl")
     xmlFile = fileTree(downloadFolder).include { it.file.name.toLowerCase().endsWith("xml") }
     outDirectory = file(transformFolder)
 }
@@ -127,7 +113,7 @@ tasks.register('deleteDataOnFtp') {
                 }.each {
                     def fileName = remoteDirectory + it.getName()
                     println "Deleting: " + fileName
-                    // ************ TODO !!!!!!!!!!
+                    // ************ TODO !!!!!!!!!! -> det ret = remove fileName
                     def ret = remove '/remote/file'
                     if (!ret) {
                         throw new GradleException("could not delete: " + fileName)
